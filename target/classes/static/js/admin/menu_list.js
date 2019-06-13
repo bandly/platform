@@ -1,110 +1,240 @@
+var editObj=null,ptable=null,treeGrid=null,tableId='treeTable',layer=null;
+
+
 layui.config({
-    version: '1554901098009' //为了更新 js 缓存，可忽略
-});
+    base: '../../../js/extends/'
+    ,version: '101100'
+}).use('treeGrid');
 
-layui.use(['table', 'carousel', 'upload', 'element', 'slider'], function(){
-    var laydate = layui.laydate //日期
-        ,laypage = layui.laypage //分页
-        ,layer = layui.layer //弹层
-        ,table = layui.table //表格
-        ,carousel = layui.carousel //轮播
-        ,upload = layui.upload //上传
-        ,element = layui.element //元素操作
-        ,slider = layui.slider //滑块
-        ,treetable = layui.treetable
+layui.config({
+    base: '../../../js/'
+    ,version: '101100'
+}).use('admin');
 
-    //向世界问个好
-    layer.msg('Hello World');
-
-    //监听Tab切换
-    element.on('tab(demo)', function(data){
-        layer.tips('切换了 '+ data.index +'：'+ this.innerHTML, this, {
-            tips: 1
-        });
-    });
-
-    //执行一个 table 实例
-    table.render({
-        elem: '#menuList'
-        ,height: 420
-        ,url: '/sys/menu/list' //数据接口
-        ,title: '菜单列表'
-        ,page: true //开启分页
-        ,toolbar: '#addMenuBar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-        ,totalRow: false //开启合计行
-        ,defaultToolbar: [] //去掉  ['filter', 'print', 'exports']
-        ,response: {
-            //statusName: 'status' //规定数据状态的字段名称，默认：code
-            statusCode: 1 //规定成功的状态码，默认：0
-            //,msgName: 'hint' //规定状态信息的字段名称，默认：msg
-            //,countName: 'total' //规定数据总数的字段名称，默认：count
-        }
-        ,cols: [[ //表头
-            {type: 'checkbox', fixed: 'left'}
-            ,{field: 'menuId', title: '菜单ID', width:100, sort: true}
-            ,{field: 'menuName', title: '菜单名称', width:100}
-            ,{field: 'url', title: '菜单url', width: 200, sort: true, totalRow: true}
-            ,{field: 'type', title: '类型', width:80, sort: true}
-            ,{field: 'icon', title: '图标', width: 80, sort: true, totalRow: true}
-            ,{field: 'order_num', title: '排序', width:80}
-            ,{field: 'status', title: '状态', width: 80}
-            ,{field: 'create_time', title: '创建时间', width: 100}
-            ,{fixed: 'right', title: '操作',width: 165, align:'center', toolbar: '#menuBar'}
+layui.use(['jquery','treeGrid','layer'], function(){
+    var $=layui.jquery;
+    treeGrid = layui.treeGrid;//很重要
+    layer=layui.layer;
+    ptable=treeGrid.render({
+        id:tableId
+        ,elem: '#'+tableId
+        ,url:'/sys/menu/list'
+        ,cellMinWidth: 100
+        ,idField:'menuId'//必須字段
+        ,treeId:'menuId'//树形id字段名称
+        ,treeUpId:'parentId'//树形父id字段名称
+        ,treeShowName:'menuName'//以树形式显示的字段
+        ,heightRemove:[".dHead",10]//不计算的高度,表格设定的是固定高度，此项不生效
+        ,height:'100%'
+        ,isFilter:false
+        ,iconOpen:false//是否显示图标【默认显示】
+        ,isOpenDefault:false//节点默认是展开还是折叠【默认展开】
+        ,loading:true
+        ,method:'get'
+        ,isPage:false
+        ,cols: [[
+            //{type:'numbers'}
+            {type:'radio'}
+            //,{type:'checkbox',sort:true}
+            ,{field:'menuId',width:100, title: '编号',sort:true}
+            ,{field:'menuName', width:300, title: '名称'}
+            ,{field:'parentId', title: '父Id'}
+            //,{field:'type', hide:true}
+            ,{field:'typeName', width:80, title: '类型'}
+            ,{field:'orderNum', width:80, title: '排序'}
+            ,{field:'url', width:150, title: '菜单URL'}
+            ,{field:'perms', width:200, title: '授权标识'}
+            ,{width:300,title: '操作', align:'center'/*toolbar: '#barDemo'*/
+                ,templet: function(d){
+                    var html='';
+                    var addBtn='<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加</a>';
+                    var editBtn='<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>';
+                    var delBtn='<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>';
+                    return addBtn+editBtn+delBtn;
+                }
+            }
         ]]
-    });
-
-    //监听头工具栏事件
-    table.on('toolbar(test)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id)
-            ,data = checkStatus.data; //获取选中的数据
-        switch(obj.event){
-            case 'add':
-                layer.msg('添加');
-                break;
-            case 'update':
-                if(data.length === 0){
-                    layer.msg('请选择一行');
-                } else if(data.length > 1){
-                    layer.msg('只能同时编辑一个');
-                } else {
-                    layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-                }
-                break;
-            case 'delete':
-                if(data.length === 0){
-                    layer.msg('请选择一行');
-                } else {
-                    layer.msg('删除');
-                }
-                break;
-        };
-    });
-
-    //监听行工具事件
-    table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-        var data = obj.data //获得当前行数据
-            ,layEvent = obj.event; //获得 lay-event 对应的值
-        if(layEvent === 'detail'){
-            layer.msg('查看操作');
-        } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
-                obj.del(); //删除对应行（tr）的DOM结构
-                layer.close(index);
-                //向服务端发送删除指令
-            });
-        } else if(layEvent === 'edit'){
-            layer.msg('编辑操作');
+        ,parseData:function (res) {//数据加载后回调
+            return res;
+        }
+        ,onClickRow:function (index, o) {
+            console.log(index,o,"单击！");
+            //msg("单击！,按F12，在控制台查看详细参数！");
+        }
+        ,onDblClickRow:function (index, o) {
+            console.log(index,o,"双击");
+            msg("双击！,按F12，在控制台查看详细参数！");
+        }
+        ,onCheck:function (obj,checked,isAll) {//复选事件
+            console.log(obj,checked,isAll,"复选");
+            msg("复选,按F12，在控制台查看详细参数！");
+        }
+        ,onRadio:function (obj) {//单选事件
+            console.log(obj,"单选");
+            msg("单选,按F12，在控制台查看详细参数！");
         }
     });
 
-    //执行一个轮播实例
-    carousel.render({
-        elem: '#test1'
-        ,width: '100%' //设置容器宽度
-        ,height: 200
-        ,arrow: 'none' //不显示箭头
-        ,anim: 'fade' //切换动画方式
+    treeGrid.on('tool('+tableId+')',function (obj) {
+        if(obj.event === 'del'){//删除行
+            del(obj);
+        }else if(obj.event==="add"){//添加行
+            add(obj);
+        }else if(obj.event==="edit"){//编辑行
+            edit(obj);
+        }
     });
-
-
 });
+
+function del(obj) {
+    layer.confirm("你确定删除数据吗？如果存在下级节点则一并删除，此操作不能撤销！", {icon: 3, title:'提示'},
+        function(index){//确定回调
+            //obj.del();
+            var pdata=obj?obj.data:null;
+            var menuId = null;
+            if(null == pdata){
+               return;
+            }
+            menuId = pdata.menuId;
+            var param={};
+            param.menuId=menuId;
+            layui.$.ajax({
+                url: '/sys/menu/delete',
+                type: 'post',
+                data: param,
+                beforeSend: function () {
+                    this.layerIndex = layer.load(0, {shade: [0.5, '#393D49']});
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        layer.alert("删除成功", {icon: 6}, function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                            //重新加载
+                            reload();
+
+                        });
+
+
+                    } else {
+                        layer.alert("删除失败[" + data.msg + "]", {icon: 6}, function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                        });
+                    }
+                },
+                complete: function () {
+                    layer.close(this.layerIndex);
+                },
+            });
+
+
+            layer.close(index);
+        },function (index) {//取消回调
+            layer.close(index);
+        }
+    );
+}
+
+
+var i=1000000;
+//添加
+function add(pObj) {
+   var pdata=pObj?pObj.data:null;
+ /*   var param={};
+    param.name='水果'+Math.random();
+    param.id=++i;
+    param.pId=pdata?pdata.id:null;
+    treeGrid.addRow(tableId,pdata?pdata[treeGrid.config.indexName]+1:0,param);*/
+    var menuId = null;
+    if(null != pdata){
+       menuId = pdata.menuId;
+    }
+    WeAdminEdit('添加菜单','./add.html',menuId);
+
+}
+
+//编辑
+function edit(pObj) {
+    var pdata=pObj?pObj.data:null;
+    /*   var param={};
+       param.name='水果'+Math.random();
+       param.id=++i;
+       param.pId=pdata?pdata.id:null;
+       treeGrid.addRow(tableId,pdata?pdata[treeGrid.config.indexName]+1:0,param);*/
+    var menuId = null;
+    if(null != pdata){
+        menuId = pdata.menuId;
+    }
+    WeAdminEdit('编辑菜单','./edit.html',menuId);
+
+}
+
+function print() {
+    console.log(treeGrid.cache[tableId]);
+    msg("对象已打印，按F12，在控制台查看！");
+}
+
+function msg(msg) {
+    var loadIndex=layer.msg(msg, {
+        time:3000
+        ,offset: 'b'//顶部
+        ,shade: 0
+    });
+}
+
+function openorclose() {
+    var map=treeGrid.getDataMap(tableId);
+    var o= map['102'];
+    treeGrid.treeNodeOpen(tableId,o,!o[treeGrid.config.cols.isOpen]);
+}
+
+
+function openAll() {
+    var treedata=treeGrid.getDataTreeList(tableId);
+    treeGrid.treeOpenAll(tableId,!treedata[0][treeGrid.config.cols.isOpen]);
+}
+
+function getCheckData() {
+    var checkStatus = treeGrid.checkStatus(tableId)
+        ,data = checkStatus.data;
+    layer.alert(JSON.stringify(data));
+}
+function radioStatus() {
+    var data = treeGrid.radioStatus(tableId)
+    layer.alert(JSON.stringify(data));
+}
+function getCheckLength() {
+    var checkStatus = treeGrid.checkStatus(tableId)
+        ,data = checkStatus.data;
+    layer.msg('选中了：'+ data.length + ' 个');
+}
+
+function reload() {
+    treeGrid.reload(tableId,{
+        page:{
+            curr:1
+        }
+    });
+}
+function query() {
+    treeGrid.query(tableId,{
+        where:{
+            name:'sdfsdfsdf'
+        }
+    });
+}
+
+function test() {
+    console.log(treeGrid.cache[tableId],treeGrid.getClass(tableId));
+
+
+    /*var map=treeGrid.getDataMap(tableId);
+    var o= map['102'];
+    o.name="更新";
+    treeGrid.updateRow(tableId,o);*/
+}

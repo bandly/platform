@@ -19,7 +19,7 @@ mysql:
       url: jdbc:mysql://localhost:3306/platform?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&userSSL=true&autoReconnect=true&allowMultiQueries=true
       username: root
       password: mysql123456
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       #连接池最小值、最大致、初始值
       minIdle: 5
       maxActive: 20
