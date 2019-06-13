@@ -1,7 +1,10 @@
 package com.xuhe.platform.common.web.interceptor;
 
 
+import com.xuhe.platform.common.annotation.ApiResponseStyle;
 import com.xuhe.platform.common.annotation.ResponseResult;
+import com.xuhe.platform.common.enums.ApiStyleEnum;
+import com.xuhe.platform.common.web.constants.HeaderConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  * @author liqiang
@@ -25,7 +29,7 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
         // 在请求处理前 判断请求的方法或者请求的类上是否标记有注解@ResponseResult 有的话说明 需要进行响应格式包装，
         // 把 RESPONSE-RESULT 标记 存入request 属性当中
         if(handler instanceof HandlerMethod){
-            final HandlerMethod handlerMethod = (HandlerMethod) handler;
+          final HandlerMethod handlerMethod = (HandlerMethod) handler;
             final Class<?> clazz = handlerMethod.getBeanType();
             final Method method = handlerMethod.getMethod();
             if (clazz.isAnnotationPresent(ResponseResult.class)) {
@@ -33,6 +37,13 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
             } else if (method.isAnnotationPresent(ResponseResult.class)) {
                 request.setAttribute(RESPONSE_RESULT, method.getAnnotation(ResponseResult.class));
             }
+
+            if (clazz.isAnnotationPresent(ApiResponseStyle.class)) {
+                request.setAttribute(HeaderConstants.API_STYLE, clazz.getAnnotation(ApiResponseStyle.class));
+            }else if(method.isAnnotationPresent(ApiResponseStyle.class)){
+                request.setAttribute(HeaderConstants.API_STYLE, method.getAnnotation(ApiResponseStyle.class));
+            }
+
         }
         return true;
     }

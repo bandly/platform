@@ -28,6 +28,10 @@ public enum ResultCode {
     USER_NOT_EXIST(20004, "用户不存在"),
     USER_HAS_EXISTED(20005, "用户已存在"),
     LOGIN_CREDENTIAL_EXISTED(20006, "凭证已存在"),
+    USER_NAME_HAS_EXISTED(20007, "账户名称已存在"),
+    MOBILE_HAS_EXISTED(20008, "手机号已存在"),
+    EMAIL_HAS_EXISTED(20009, "邮箱已存在"),
+    TWICE_PASSWORD_NO_SAME(20010, "两次密码不一致"),
 
     /* 业务错误：30001-39999 */
     SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "业务错误"),

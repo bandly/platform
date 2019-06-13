@@ -76,6 +76,7 @@ public class DefaultErrorResult implements Result {
         result.setMessage(resultCode.message());
         result.setStatus(httpStatus.value());
         result.setError(httpStatus.getReasonPhrase());
+        result.setErrors(e.getMessage());
         result.setException(e.getClass().getName());
         result.setPath(RequestContextHolderUtil.getRequest().getRequestURI());
         result.setTimestamp(new Date());
@@ -85,7 +86,7 @@ public class DefaultErrorResult implements Result {
     public static DefaultErrorResult failure(BusinessException e){
         BusinessExceptionEnum ee = BusinessExceptionEnum.getByEClass(e.getClass());
         if(null != ee){
-            return DefaultErrorResult.failure(ee.getResultCode(),e,ee.getHttpStatus(),e.getData());
+            return DefaultErrorResult.failure(null == e.getResultCode()? ee.getResultCode():e.getResultCode(),e,ee.getHttpStatus(),e.getData());
         }
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(null == e.getResultCode()?ResultCode.SUCCESS:e.getResultCode(),e,HttpStatus.OK,e.getData());
         if(!StringUtils.isEmpty(e.getMessage())){

@@ -16,10 +16,10 @@ public class UserQuery  extends PageQuery{
     private String username;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String startCreateTime;
+    private Date startCreateTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String endCreateTime;
+    private Date endCreateTime;
 
     private Integer status;
 

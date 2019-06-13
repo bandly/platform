@@ -1,6 +1,7 @@
 package com.xuhe.platform.common.web.handler;
 
 
+import com.xuhe.platform.common.annotation.ApiResponseStyle;
 import com.xuhe.platform.common.annotation.ResponseResult;
 import com.xuhe.platform.common.enums.ApiStyleEnum;
 import com.xuhe.platform.common.result.DefaultErrorResult;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/05/28
  * @description: 接口响应 统一格式处理器
  */
-//@ControllerAdvice
+@ControllerAdvice
 public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
 
@@ -40,14 +41,20 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         HttpServletRequest request = RequestContextHolderUtil.getRequest();
         //获取之前ResponseResultInterceptor 中存入的ResponseResult 对象
         ResponseResult responseResultAnn = (ResponseResult) request.getAttribute(ResponseResultInterceptor.RESPONSE_RESULT);
+
+        ApiStyleEnum apiStyleEnum = (ApiStyleEnum) request.getAttribute(HeaderConstants.API_STYLE);
+
+        if(null == apiStyleEnum){
+            return null != responseResultAnn;
+        }
         //当调用人员不想要封装结果时，可以在header上设置参数Api-Style=none
-        return responseResultAnn != null && !ApiStyleEnum.NONE.name().equalsIgnoreCase(request.getHeader(HeaderConstants.API_STYLE));
+        return responseResultAnn != null && ApiStyleEnum.NONE !=  apiStyleEnum;
     }
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         ResponseResult responseResultAnn = (ResponseResult) RequestContextHolderUtil.getRequest().getAttribute(ResponseResultInterceptor.RESPONSE_RESULT);
-       /* Class<? extends Result> resultClazz = responseResultAnn.value();
+        Class<? extends Result> resultClazz = responseResultAnn.value();
         if(resultClazz.isAssignableFrom(PlatformResult.class)){
             if(body instanceof DefaultErrorResult){
                 DefaultErrorResult defaultErrorResult = (DefaultErrorResult) body;
@@ -56,11 +63,12 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
                 result.setMsg(defaultErrorResult.getMessage());
                 result.setData(defaultErrorResult.getErrors());
                 return result;
-            }else if(body instanceof String){
-                return PlatformResult.success(body);
+            }else if(body instanceof PlatformResult){
+                return body;
             }
-        }*/
-        return PlatformResult.success(body);
+            return PlatformResult.success(body);
+        }
+        return body;
     }
 }
 

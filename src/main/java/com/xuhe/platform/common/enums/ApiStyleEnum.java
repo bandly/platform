@@ -7,6 +7,11 @@ package com.xuhe.platform.common.enums;
  */
 public enum ApiStyleEnum {
 
+    /**
+     * 平台统一返回格式
+     */
+    PLATFORM_RESULT,
+
     NONE;
 
     public static boolean isValid(String name) {

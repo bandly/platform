@@ -1,13 +1,17 @@
 package com.xuhe.platform.controller;
 
+import com.xuhe.platform.common.result.Result;
+import com.xuhe.platform.dal.model.SysMenu;
+import com.xuhe.platform.entity.vo.layui.TableResult;
+import com.xuhe.platform.entity.vo.sys.menu.MenuTree;
 import com.xuhe.platform.service.SysMenuService;
 import com.xuhe.platform.entity.vo.sys.menu.MenuVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,17 +28,35 @@ public class SysMenuController {
 
 
     @GetMapping(value = "list")
-    public List<MenuVO> list(){
-        List<MenuVO> menuVOList = new ArrayList<>();
-        MenuVO menuVO = new MenuVO();
-        menuVO.setMenuId(1L);
-        menuVO.setMenuName("菜单管理");
-        menuVO.setUrl("");
-        menuVO.setType(0);
-        menuVO.setStatus(1);
-        menuVO.setOrderNum(0);
-        menuVO.setCreateTime("2019-05-27 18:59:35");
-        menuVOList.add(menuVO);
-        return menuVOList;
+    public TableResult<MenuVO> list(){
+        List<MenuVO>  menuVOList = sysMenuService.findMenuList();
+        return new TableResult(1,menuVOList);
+    }
+
+
+    @PostMapping(value = "add")
+    public Result add(MenuVO menuVO){
+        return sysMenuService.addMenu(menuVO);
+    }
+
+    @GetMapping(value = "get")
+    public Result get(Long menuId){
+        return sysMenuService.getMenuById(menuId);
+    }
+
+    @PostMapping(value = "edit")
+    public Result edit(MenuVO menuVO){
+        return sysMenuService.updateMenu(menuVO);
+    }
+
+    @PostMapping(value = "delete")
+    public Result delete(Long menuId){
+        return sysMenuService.deleteMenu(menuId);
+    }
+
+
+    @GetMapping(value = "getMenuTreeData")
+    public List<MenuTree> getMenuTreeData(){
+        return sysMenuService.getMenuTreeData();
     }
 }

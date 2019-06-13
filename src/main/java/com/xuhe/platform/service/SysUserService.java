@@ -33,7 +33,7 @@ public interface SysUserService {
      * @param userId
      * @return
      */
-    Result getUserById(Long userId);
+    Result<UserVO> getUserById(Long userId);
 
     /**
      * 编辑保存用户

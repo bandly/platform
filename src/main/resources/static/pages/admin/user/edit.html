@@ -18,7 +18,7 @@
   
   <body>
   <div class="weadmin-body">
-      <form class="layui-form"  >
+      <form class="layui-form" lay-filter="editForm" >
           <input type="hidden" name="userId" id = "dataId" value = "">
           <div class="layui-form-item">
               <label for="username" class="layui-form-label">
@@ -34,26 +34,20 @@
           </div>
           <div class="layui-form-item">
               <label for="mobile" class="layui-form-label">
-                  <span class="we-red">*</span>手机
+                  手机
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="mobile" name="mobile" required="" lay-verify="phone"
+                  <input type="text" id="mobile" name="mobile" required="false" lay-verify="phone"
                          autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="we-red">*</span>将会成为您唯一的登入名
               </div>
           </div>
           <div class="layui-form-item">
               <label for="email" class="layui-form-label">
-                  <span class="we-red">*</span>邮箱
+                  邮箱
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="email" name="email" required="" lay-verify="email"
+                  <input type="text" id="email" name="email" required="false" lay-verify="email"
                          autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="we-red">*</span>
               </div>
           </div>
           <div class="layui-form-item">
@@ -100,11 +94,19 @@
                 success:function(data){
                     if(data.code == 1){
                        var obj = data.data;
-                        layui.$("input[name='username']").val(obj.username);
+                  /*      layui.$("input[name='username']").val(obj.username);
                         layui.$("input[name='email']").val(obj.email);
                         layui.$("input[name='mobile']").val(obj.mobile);
                         layui.$("input[name='mobile']").val(obj.mobile);
                         layui.$("#userStatus").val(obj.status);
+*/
+                        form.val("editForm", {
+                            "username": obj.username
+                            ,"email": obj.email
+                            ,"mobile": obj.mobile
+                            ,"status": obj.status
+
+                        })
 
                     }else{
                         layer.alert("获取数据失败["+data.msg+"]", {icon: 6},function () {
@@ -123,7 +125,7 @@
         
           //自定义验证规则
           form.verify({
-            nikename: function(value){
+            username: function(value){
               if(value.length < 5){
                 return '昵称至少得5个字符啊';
               }

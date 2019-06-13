@@ -25,13 +25,13 @@ public class HeaderConstants {
 
 
     /**
-     * 调用来源 {@link CallSourceEnum}
+     * 调用来源 {@link com.xuhe.platform.common.enums.CallSourceEnum}
      */
     public static final String CALL_SOURCE = "Call-Source";
 
 
     /**
-     * API的返回格式 {@link ApiStyleEnum}
+     * API的返回格式 {@link com.xuhe.platform.common.enums.ApiStyleEnum}
      */
     public static final String API_STYLE = "Api-Style";
 }

@@ -7,14 +7,14 @@ import com.xuhe.platform.common.enums.ResultCode;
  * @date 2019/05/30
  * @description:
  */
-public class PlatformResult implements Result {
+public class PlatformResult<T> implements Result{
     private static final long serialVersionUID = 874200365941306385L;
 
     private Integer code;
 
     private String msg;
 
-    private Object data;
+    private T data;
 
     public static PlatformResult success() {
         PlatformResult result = new PlatformResult();
@@ -73,7 +73,7 @@ public class PlatformResult implements Result {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

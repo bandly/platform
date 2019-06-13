@@ -18,7 +18,7 @@
         2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
     introspectedColumnImpl：类全限定名，用于扩展MBG
 -->
-    <context id="platformTable" targetRuntime="MyBatis3Simple">
+    <context id="platformTable" targetRuntime="MyBatis3">
 
 
 

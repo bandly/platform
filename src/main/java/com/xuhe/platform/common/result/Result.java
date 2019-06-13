@@ -5,5 +5,5 @@ package com.xuhe.platform.common.result;
  * @date 2019/05/30
  * @description:
  */
-public interface Result {
+public interface Result<T> {
 }

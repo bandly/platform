@@ -1,0 +1,11 @@
+.idea
+*.iml
+/target/
+.settings
+.txt
+*.class
+*.project
+*.prefs
+*.classpath
+*.factorypath
+*.log
