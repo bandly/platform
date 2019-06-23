@@ -55,7 +55,12 @@ public enum ResultCode {
     /* 权限错误：70001-79999 */
     PERMISSION_NO_ACCESS(70001, "无访问权限"),
     RESOURCE_EXISTED(70002, "资源已存在"),
-    RESOURCE_NOT_EXISTED(70003, "资源不存在");
+    RESOURCE_NOT_EXISTED(70003, "资源不存在"),
+
+    /* 安全验证错误：80001-89999 */
+
+    //csrf错误
+    CSRF_ERROR(80001,"CSRF_ERROR");
 
     private Integer code;
 

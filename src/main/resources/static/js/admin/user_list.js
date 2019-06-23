@@ -58,7 +58,42 @@ layui.use(['table', 'carousel','laydate', 'element','util','admin'], function(){
         if(layEvent === 'edit'){
             WeAdminEdit('编辑用户','./edit.html',data.userId)
         }else if(layEvent === 'del'){
-            console.info(layEvent)
+            layer.confirm('真的删除该用户么？', function(index){
+                //obj.del(); //删除对应行（tr）的DOM结构
+                //layer.close(index);
+                var pdata=obj?obj.data:null;
+                var userId = null;
+                if(null == pdata){
+                    return;
+                }
+                userId = pdata.userId;
+                var param={};
+                param.userId=userId;
+                //向服务端发送删除指令
+                layui.$.ajax({
+                    url:'/sys/user/delete',
+                    type:'post',
+                    data:param,
+                    beforeSend:function () {
+                        this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                    },
+                    success:function(data){
+                        if(data.code == 1){
+                            //layer.alert("删除成功", {icon: 6});
+                            tab.reload(); // 刷新
+                            layer.msg("删除成功");
+
+
+                        }else{
+                            layer.alert("删除失败["+data.msg+"]", {icon: 6});
+                        }
+                    },
+                    complete: function () {
+                        layer.close(this.layerIndex);
+                    },
+                });
+
+            });
         }else if(layEvent === 'detail'){
             console.info(layEvent)
         }

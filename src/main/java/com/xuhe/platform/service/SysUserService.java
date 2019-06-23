@@ -41,4 +41,11 @@ public interface SysUserService {
      * @return
      */
     Result updateUser(EditUserVO editUserVO);
+
+    /**
+     * 删除用户
+     * @param userId
+     * @return
+     */
+    Result deleteUser(Long userId);
 }

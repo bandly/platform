@@ -2,5 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platfor-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platfor-api/platform-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-dal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-gen" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-gen/platform-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-web" charset="UTF-8" />
   </component>
 </project>

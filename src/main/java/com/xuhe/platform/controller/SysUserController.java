@@ -7,6 +7,7 @@ import com.xuhe.platform.common.enums.ApiStyleEnum;
 import com.xuhe.platform.common.result.PlatformResult;
 import com.xuhe.platform.common.result.Result;
 import com.xuhe.platform.common.web.constants.HeaderConstants;
+import com.xuhe.platform.common.web.interceptor.csrf.CsrfCheck;
 import com.xuhe.platform.entity.common.Page;
 import com.xuhe.platform.entity.query.UserQuery;
 import com.xuhe.platform.entity.vo.layui.TableResult;
@@ -52,6 +53,7 @@ public class SysUserController {
     }
 
 
+    @CsrfCheck
     @PostMapping(value = "add")
     public Result list(@Valid AddUserVO addUserVO/*,BindingResult bindingResult*/){
        /* if(bindingResult.hasErrors()){
@@ -59,6 +61,7 @@ public class SysUserController {
                 System.out.println(error.getDefaultMessage());
             }
         }*/
+
         return sysUserService.addUser(addUserVO);
     }
 
@@ -70,5 +73,10 @@ public class SysUserController {
     @PostMapping(value = "edit")
     public Result edit(EditUserVO editUserVO){
         return sysUserService.updateUser(editUserVO);
+    }
+
+    @PostMapping(value = "delete")
+    public Result delete(@RequestParam(name = "userId", required = true) Long userId){
+        return sysUserService.deleteUser(userId);
     }
 }

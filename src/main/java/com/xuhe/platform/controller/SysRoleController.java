@@ -1,16 +1,20 @@
 package com.xuhe.platform.controller;
 
 import com.xuhe.platform.common.result.Result;
+import com.xuhe.platform.common.validator.EditGroup;
 import com.xuhe.platform.entity.common.Page;
 import com.xuhe.platform.entity.query.RoleQuery;
 import com.xuhe.platform.entity.vo.layui.TableResult;
 import com.xuhe.platform.entity.vo.sys.role.RoleVO;
 import com.xuhe.platform.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * @author liqiang
@@ -42,7 +46,7 @@ public class SysRoleController {
     }
 
     @PostMapping(value = "edit")
-    public Result edit(RoleVO roleVO){
+    public Result edit(@Validated(EditGroup.class) RoleVO roleVO){
         return sysRoleService.updateRole(roleVO);
     }
 }

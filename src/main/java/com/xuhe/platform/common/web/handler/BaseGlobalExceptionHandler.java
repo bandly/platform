@@ -85,7 +85,8 @@ public class BaseGlobalExceptionHandler {
 
     private ResponseEntity<DefaultErrorResult> convertDefaultErrorResultToResponseEntity(DefaultErrorResult defaultErrorResult){
         return ResponseEntity
-                .status(HttpStatus.valueOf(defaultErrorResult.getStatus()))
+                //.status(HttpStatus.valueOf(defaultErrorResult.getStatus()))
+                .status(HttpStatus.OK)
                 .body(defaultErrorResult);
     }
 }

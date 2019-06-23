@@ -18,7 +18,7 @@
 
   <body>
   <div class="weadmin-body">
-      <form class="layui-form"  >
+      <form class="layui-form" lay-filter="editForm">
           <input type="hidden" name="roleId" id = "dataId" value = "">
           <div class="layui-form-item">
               <label for="roleName" class="layui-form-label">
@@ -62,8 +62,12 @@
                 success:function(data){
                     if(data.code == 1){
                        var obj = data.data;
-                        layui.$("input[name='roleName']").val(obj.roleName);
-                        layui.$("input[name='remark']").val(obj.remark);
+
+                        form.val("editForm", {
+                            "roleName": obj.roleName
+                            ,"remark": obj.remark
+
+                        })
                     }else{
                         layer.alert("获取数据失败["+data.msg+"]", {icon: 6},function () {
                             // 获得frame索引

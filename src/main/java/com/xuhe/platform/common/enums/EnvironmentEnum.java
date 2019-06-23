@@ -21,7 +21,11 @@ public enum EnvironmentEnum {
     /**
      * 测试
      */
-    QA;
+    QA,
+    /**
+     * 开发
+     */
+    DEV;
 
     public static boolean isProdEnv(Environment env) {
         Assert.notNull(env, "env parameter not null.");

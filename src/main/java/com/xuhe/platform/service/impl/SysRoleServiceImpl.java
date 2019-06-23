@@ -75,6 +75,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         SysRole role = sysRoleMapper.selectByPrimaryKey(roleVO.getRoleId().intValue());
         if(null != role){
             SysRole newRole = new SysRole();
+            newRole.setRoleId(roleVO.getRoleId().intValue());
             newRole.setRoleName(roleVO.getRoleName());
             newRole.setRemark(roleVO.getRemark());
             sysRoleMapper.updateByPrimaryKeySelective(newRole);

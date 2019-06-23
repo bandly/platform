@@ -381,6 +381,7 @@
     <if test="endCreateTime!=null and endCreateTime!=''">
       <![CDATA[ and  create_time <= #{endCreateTime} ]]>
     </if>
+     and is_delete = 0
     order by user_id desc
   </select>
 </mapper>

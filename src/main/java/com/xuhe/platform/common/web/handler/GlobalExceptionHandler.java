@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,18 +41,19 @@ public class GlobalExceptionHandler extends BaseGlobalExceptionHandler {
      * spring 将数据解释为web 表单数据的时候 校验参数 报 BindException
      */
     @Override
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    //@ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
     public ResponseEntity<DefaultErrorResult> handleBindException(BindException e, HttpServletRequest request) {
         return super.handleBindException(e, request);
     }
+
 
     /**
      * 处理接口参数校验不通过的异常
      * spring 将数据解释为JSON 校验参数的时候报 MethodArgumentNotValidException
      */
     @Override
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    //@ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<DefaultErrorResult> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
         return super.handleMethodArgumentNotValidException(e, request);
@@ -67,7 +69,7 @@ public class GlobalExceptionHandler extends BaseGlobalExceptionHandler {
 
     /** 处理运行时异常  */
     @Override
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    //@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<DefaultErrorResult> handleThrowable(Throwable e, HttpServletRequest request) {
         //TODO 可通过邮件、微信公众号等方式发送信息至开发人员、记录存档等操作

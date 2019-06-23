@@ -1,7 +1,10 @@
 package com.xuhe.platform.entity.vo.sys.role;
 
+
+import com.xuhe.platform.common.validator.EditGroup;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -12,6 +15,7 @@ import java.util.Date;
 @Data
 public class RoleVO {
 
+    @NotNull(groups = EditGroup.class,message = "roleId 不能为空")
     private Long roleId;
 
     private String roleName;

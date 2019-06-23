@@ -141,6 +141,19 @@ public class SysUserServiceImpl implements SysUserService {
         return PlatformResult.failure(ResultCode.RESULE_DATA_NONE);
     }
 
+    @Override
+    public Result deleteUser(Long userId) {
+        SysUser user = sysUserMapper.selectByPrimaryKey(userId.intValue());
+        if(null != user){
+            SysUser newUser = new SysUser();
+            newUser.setIsDelete(true);
+            newUser.setUserId(userId.intValue());
+            sysUserMapper.updateByPrimaryKeySelective(newUser);
+            return PlatformResult.success();
+        }
+        throw new DataNotFoundException(ResultCode.RESULE_DATA_NONE);
+    }
+
     private UserVO assembyUserVO(SysUser user) {
         UserVO userVO = new UserVO();
         userVO.setUserId(Long.valueOf(user.getUserId()));
