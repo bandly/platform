@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/platfor-api/platform-service/pom.xml" />
         <option value="$PROJECT_DIR$/platfor-api/pom.xml" />
         <option value="$PROJECT_DIR$/platform-gen/platform-api/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-service-impl/pom.xml" />
       </set>
     </option>
   </component>

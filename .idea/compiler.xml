@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="platform-common" />
         <module name="platform-service" />
+        <module name="platform-gen" />
         <module name="platform-web" />
         <module name="platform-dal" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="platform-dal" target="1.8" />
       <module name="platform-gen" target="1.8" />
       <module name="platform-service" target="1.8" />
+      <module name="platform-service-impl" target="1.8" />
       <module name="platform-web" target="1.8" />
       <module name="platformapi" target="1.8" />
     </bytecodeTargetLevel>
@@ -31,6 +33,7 @@
       <module name="platform-dal" options="-parameters" />
       <module name="platform-gen" options="-parameters" />
       <module name="platform-service" options="-parameters" />
+      <module name="platform-service-impl" options="-parameters" />
       <module name="platform-web" options="-parameters" />
       <module name="platformapi" options="-parameters" />
     </option>
