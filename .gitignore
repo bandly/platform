@@ -1,7 +1,11 @@
 .idea
 *.iml
-
-
+platform-common/target
+platform-dal/target
+platform-gen/target
+platform-service/target
+platform-web/target
+/target/
 platform-common/.settings
 platform-dal/.settings
 platform-gen/.settings
