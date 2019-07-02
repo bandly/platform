@@ -23,9 +23,12 @@ public class GenerateTest {
         List<String> warnings = new ArrayList<>();
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(
-                GenerateTest.class.getResourceAsStream("classpath:generatorConfig.xml"));
+                GenerateTest.class.getResourceAsStream("/generatorConfig.xml"));
         DefaultShellCallback callback = new DefaultShellCallback(true);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         myBatisGenerator.generate(null);
+
+
+
     }
 }
