@@ -71,13 +71,9 @@ public class ShiroConfig {
         subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
         securityManager.setSubjectDAO(subjectDAO);
 
-
-
-
         MyAuthenticator myAuthenticator = new MyAuthenticator();
         myAuthenticator.setRealms(list);
         securityManager.setAuthenticator(myAuthenticator);
-
 
 
         //绑定实例
@@ -92,10 +88,6 @@ public class ShiroConfig {
     }
 
 
-    @Bean
-    public RememberMeManager rememberMeManager(){
-        return new MyRememberMeManager();
-    }
 
     /**
      *  开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证

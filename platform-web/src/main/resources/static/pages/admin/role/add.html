@@ -52,6 +52,14 @@
           	admin = admin,
           	layer = layui.layer;
           	form.render();
+
+            var token = localStorage.getItem("X-Token");
+            layui.$.ajaxSetup({
+                headers : {
+                    "X-Token" : token
+                }
+            });
+
           //自定义验证规则
           form.verify({
             roleName: function(value){

@@ -15,6 +15,16 @@ layui.use(['jquery','treeGrid','layer'], function(){
     var $=layui.jquery;
     treeGrid = layui.treeGrid;//很重要
     layer=layui.layer;
+
+
+    var token = localStorage.getItem("X-Token");
+    layui.$.ajaxSetup({
+        headers : {
+            "X-Token" : token
+        }
+    });
+
+
     ptable=treeGrid.render({
         id:tableId
         ,elem: '#'+tableId

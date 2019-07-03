@@ -19,6 +19,7 @@ import com.xuhe.platform.service.form.user.AddUserForm;
 import com.xuhe.platform.service.form.user.EditUserForm;
 import com.xuhe.platform.service.page.Page;
 import com.xuhe.platform.service.query.UserQuery;
+import com.xuhe.platform.service.util.PasswordUtil;
 import com.xuhe.platform.service.vo.user.UserVO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -74,13 +75,13 @@ public class SysUserServiceImpl implements SysUserService {
 
         SysUserDO existUser = sysUserDAO.selectByAccount(addUserForm.getAccount());
 
-        if(null == existUser){
+        if(null != existUser){
             throw new DataConflictException(ResultCode.USER_NAME_HAS_EXISTED);
         }
         //判断手机号码是否重复
         if(StringUtils.isNotEmpty(addUserForm.getMobile())){
             existUser = sysUserDAO.selectByMobile(addUserForm.getMobile());
-            if(null == existUser){
+            if(null != existUser){
                 throw new DataConflictException(ResultCode.MOBILE_HAS_EXISTED);
             }
         }
@@ -88,7 +89,7 @@ public class SysUserServiceImpl implements SysUserService {
         //判断 邮箱是否重复
         if(StringUtils.isNotEmpty(addUserForm.getEmail())){
             existUser = sysUserDAO.selectByEmail(addUserForm.getEmail());
-            if(null == existUser){
+            if(null != existUser){
                 throw new DataConflictException(ResultCode.EMAIL_HAS_EXISTED);
             }
         }
@@ -102,6 +103,9 @@ public class SysUserServiceImpl implements SysUserService {
         //默认禁用
         user.setStatus(0);
         user.setIsDelete(false);
+        //用户密码加密
+        user.setPassword(PasswordUtil.passwordEncrypt(addUserForm.getPassword(),addUserForm.getAccount()));
+
         sysUserDAO.insertSelective(user);
         return PlatformResult.success();
     }

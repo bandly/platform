@@ -49,7 +49,7 @@ public class SysUserController {
     }
 
 
-    @CsrfCheck
+    // @CsrfCheck
     @PostMapping(value = "add")
     public Result list(@Valid AddUserForm addUserVO/*,BindingResult bindingResult*/){
        /* if(bindingResult.hasErrors()){

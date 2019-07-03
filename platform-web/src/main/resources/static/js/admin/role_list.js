@@ -8,6 +8,13 @@ layui.use(['table', 'carousel', 'element','util','admin'], function(){
         ,table = layui.table //表格
         ,util = layui.util;
 
+    var token = localStorage.getItem("X-Token");
+    layui.$.ajaxSetup({
+        headers : {
+            "X-Token" : token
+        }
+    });
+
     //执行一个 table 实例
     var tab = table.render({
         elem: '#tableList'

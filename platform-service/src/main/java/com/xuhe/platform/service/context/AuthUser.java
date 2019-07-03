@@ -17,6 +17,7 @@ public class AuthUser implements Serializable {
     private String name;
     private String avatar;
     private String email;
+    private String accessToken;
 
 
 

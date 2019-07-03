@@ -66,7 +66,7 @@ public class JwtHelper {
         Long currentTimeMillis = System.currentTimeMillis();
         //账号加JWT 私钥加密
         String secret = account + jwtProperties.getSecretKey();
-        //此出过期时间，单位: 毫秒
+        //过期时间，单位: 毫秒
         Date date = new Date(currentTimeMillis + jwtProperties.getTokenExpireTime() * 60 * 1000L);
         Algorithm algorithm = Algorithm.HMAC256(secret);
 

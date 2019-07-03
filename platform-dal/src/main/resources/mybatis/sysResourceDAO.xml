@@ -127,7 +127,7 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xuhe.platform.dal.model.SysResourceDO">
         update sys_resource
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             <if test="parentId != null and parentId!= ''" >
                 parent_id=#{parentId},
             </if>
@@ -170,39 +170,17 @@
     <update id="updateByPrimaryKey" parameterType="com.xuhe.platform.dal.model.SysResourceDO">
         update sys_resource
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             parent_id=#{parentId},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             resource_name=#{resourceName},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             url=#{url},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             perms=#{perms},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             type=#{type},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             icon=#{icon},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             order_num=#{orderNum},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             status=#{status},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             create_time=#{createTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             update_time=#{updateTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             is_delete=#{isDelete},
         </trim>
         </set>

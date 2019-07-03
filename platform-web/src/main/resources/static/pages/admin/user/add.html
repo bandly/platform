@@ -20,11 +20,11 @@
     <div class="weadmin-body">
         <form class="layui-form"  >
           <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
+              <label for="account" class="layui-form-label">
                   <span class="we-red">*</span>登录名
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="username" name="username" required="" lay-verify="username"
+                  <input type="text" id="account" name="account" required="" lay-verify="account"
                   autocomplete="off" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">
@@ -94,9 +94,16 @@
           	admin = admin,
           	layer = layui.layer;
           	form.render();
+
+            var token = localStorage.getItem("X-Token");
+            layui.$.ajaxSetup({
+                headers : {
+                    "X-Token" : token
+                }
+            });
           //自定义验证规则
           form.verify({
-            username: function(value){
+              account: function(value){
               if(value.length < 5){
                 return '昵称至少得5个字符啊';
               }

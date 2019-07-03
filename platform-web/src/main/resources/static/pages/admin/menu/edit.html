@@ -132,7 +132,14 @@
                     admin = admin,
                     layer = layui.layer,
                     treeSelect = layui.treeSelect;
-                form.render();
+
+
+                var token = localStorage.getItem("X-Token");
+                layui.$.ajaxSetup({
+                    headers : {
+                        "X-Token" : token
+                    }
+                });
 
 
 

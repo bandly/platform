@@ -6,7 +6,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 /**
  * @author liqiang
  * @date 2019/06/27
- * @description:
+ * @description: jwt token 认证
  */
 public class JwtToken implements AuthenticationToken {
 

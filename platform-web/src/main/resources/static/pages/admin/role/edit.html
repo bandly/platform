@@ -50,6 +50,13 @@
 	      	admin = admin,
 	      	layer = layui.layer;
 
+            var token = localStorage.getItem("X-Token");
+            layui.$.ajaxSetup({
+                headers : {
+                    "X-Token" : token
+                }
+            });
+
 	        var roleId = layui.$("#dataId").val();
             //请求服务器 获取数据
             layui.$.ajax({

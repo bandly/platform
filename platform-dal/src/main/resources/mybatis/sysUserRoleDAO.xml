@@ -78,7 +78,7 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xuhe.platform.dal.model.SysUserRoleDO">
         update sys_user_role
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             <if test="roleId != null and roleId!= ''" >
                 role_id=#{roleId},
             </if>
@@ -100,18 +100,10 @@
     <update id="updateByPrimaryKey" parameterType="com.xuhe.platform.dal.model.SysUserRoleDO">
         update sys_user_role
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             role_id=#{roleId},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             create_time=#{createTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             update_time=#{updateTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             is_delete=#{isDelete},
         </trim>
         </set>

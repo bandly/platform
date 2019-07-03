@@ -4,6 +4,8 @@ import com.xuhe.platform.common.enums.ResultCode;
 import com.xuhe.platform.common.exception.BusinessException;
 import com.xuhe.platform.common.result.PlatformResult;
 import com.xuhe.platform.common.result.Result;
+import com.xuhe.platform.service.context.AuthUser;
+import com.xuhe.platform.service.context.LoginContextHelper;
 import com.xuhe.platform.service.form.login.LoginForm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Optional;
 
 /**
  * @author liqiang
@@ -47,9 +50,12 @@ public class SysLoginController {
         //登录
         currentUser.login(token);
         if(currentUser.isAuthenticated()){
-            String jwtToken = (String)currentUser.getPrincipal();
+            Optional<AuthUser> authCurUser = LoginContextHelper.getLoginUser();
+            String jwtToken = "";
+            if(authCurUser.isPresent()){
+                jwtToken = authCurUser.get().getAccessToken();
+            }
             System.out.println("jwtToken:"+jwtToken);
-            currentUser.hasRole("sss");
             return PlatformResult.success(jwtToken);
         }else{
             throw new BusinessException(ResultCode.USER_LOGIN_ERROR);

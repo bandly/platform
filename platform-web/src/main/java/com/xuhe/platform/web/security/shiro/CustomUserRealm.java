@@ -5,6 +5,7 @@ import com.xuhe.platform.common.enums.ResultCode;
 import com.xuhe.platform.common.enums.UserStatusEnum;
 import com.xuhe.platform.service.admin.SysUserService;
 import com.xuhe.platform.service.context.AuthUser;
+import com.xuhe.platform.service.context.LoginContextHelper;
 import com.xuhe.platform.service.dto.SysUserDTO;
 import com.xuhe.platform.web.constants.MySecurityConstants;
 import com.xuhe.platform.web.exception.CustomShiroAuthenicationException;
@@ -83,7 +84,9 @@ public class CustomUserRealm extends AuthorizingRealm {
         AuthUser authUser = new AuthUser();
         authUser.setName(sysUserDTO.getAccount());
         authUser.setUserId(sysUserDTO.getUserId().toString());
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(jwtToken,sysUserDTO.getPassword(), MySecurityConstants.SHIRO_REALM);
+        authUser.setAccessToken(jwtToken);
+        LoginContextHelper.setCurrentLoginUser(authUser);
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(account,sysUserDTO.getPassword(), MySecurityConstants.SHIRO_REALM);
         return authenticationInfo;
     }
 }

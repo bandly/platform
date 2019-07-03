@@ -78,10 +78,10 @@ public class CsrfInterceptor implements HandlerInterceptor {
             return true;
         }
 
-     /*   if(null == request.getSession().getAttribute(FORM_TOKEN_KEY)){
+        if(null == request.getSession().getAttribute(FORM_TOKEN_KEY)){
             request.getSession().setAttribute(FORM_TOKEN_KEY, UUID.randomUUID().toString().replace("-",""));
 
-        }*/
+        }
 
         //只有post 请求校验csrf
         if(!HttpMethod.POST.name().equalsIgnoreCase(request.getMethod())){

@@ -74,7 +74,7 @@
     <update id="updateByPrimaryKeySelective" parameterType="${doPackage}.${className}DO">
         update ${tableNamePrefix}${tableName}
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
         <#list list as item >
             <#if item_index gt 0>
             <if test="${item.propName} != null and ${item.propName}!= ''" >
@@ -91,13 +91,13 @@
     <update id="updateByPrimaryKey" parameterType="${doPackage}.${className}DO">
         update ${tableNamePrefix}${tableName}
         <set>
-        <#list list as item >
         <trim prefix="(" suffix=")" suffixOverrides=",">
+        <#list list as item >
         <#if item_index gt 0>
             ${item.columnName}=${r'#{'}${item.propName}${r'}'},
         </#if>
-        </trim>
         </#list>
+        </trim>
         </set>
     </update>
 

@@ -113,7 +113,7 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xuhe.platform.dal.model.SysUserDO">
         update sys_user
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             <if test="account != null and account!= ''" >
                 account=#{account},
             </if>
@@ -150,33 +150,15 @@
     <update id="updateByPrimaryKey" parameterType="com.xuhe.platform.dal.model.SysUserDO">
         update sys_user
         <set>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="" suffix="" suffixOverrides=",">
             account=#{account},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             password=#{password},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             email=#{email},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             mobile=#{mobile},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             status=#{status},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             create_user_id=#{createUserId},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             create_time=#{createTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             update_time=#{updateTime},
-        </trim>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
             is_delete=#{isDelete},
         </trim>
         </set>
