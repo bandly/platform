@@ -240,7 +240,7 @@ public class GenContext {
         //通过DO 名称转换 成数据库表名  去掉 DO
         this.tableName = CamelCaseUtils.toUnderlineName(doName.substring(0,doName.length() - 2));
         //代码输出路径
-        String packageDir = parentPackageName.replaceAll("\\.", File.separator + File.separator);
+        String packageDir = parentPackageName.replaceAll(".", File.separator + File.separator);
 
         //doName 去掉 DO
         doName = doName.substring(0,doName.length() - 2);

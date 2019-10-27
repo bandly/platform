@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -141,7 +142,7 @@ public class GenDAO {
 
         genContext.setDoNameLower(genContext.getDoName().substring(0,1).toLowerCase() + genContext.getDoName().substring(1));
 
-        String packageDir = parentPackageName.replaceAll("\\.", File.separator );
+        String packageDir = parentPackageName.replaceAll("\\.", Matcher.quoteReplacement(File.separator));
 
         String doFile = genContext.getBaseDir() +  File.separator + GenConstants.javaDir + File.separator + packageDir
                 + File.separator + "model" + File.separator + genContext.getDoName() + "DO.java";
@@ -456,9 +457,9 @@ public class GenDAO {
         for (int i = 0; i < num; i++) {
             tmp = paramList.get(i);
             String columnName = (String) tmp.get(VP_COLUMN_NAME);
-            if (ID.equalsIgnoreCase(columnName)) {
+/*            if (ID.equalsIgnoreCase(columnName)) {
                 continue;
-            }
+            }*/
            /* if (GMT_CREATE.equalsIgnoreCase(columnName)) {
                 continue;
             }*/

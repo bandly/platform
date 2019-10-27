@@ -43,7 +43,7 @@
         insert into ${tableNamePrefix}${tableName}
         (${colsWithoutCommColumns})
         values
-        (<trim prefix="(" suffix=")" suffixOverrides=","><#list list as item><#if item_index gt 0>${r'#{'}${item.propName},jdbcType=${item.jdbcType}${r'}'},</#if></#list></trim>)
+        <trim prefix="(" suffix=")" suffixOverrides=","><#list list as item><#if item_index gt 0>${r'#{'}${item.propName},jdbcType=${item.jdbcType}${r'}'},</#if></#list></trim>
     </insert>
 
     <!--插入记录 全部字段忽略掉 字段值为null或者空 -->
@@ -99,6 +99,12 @@
         </#list>
         </trim>
         </set>
+        where
+        <#list list as l>
+            <#if l_index == 0>
+                ${l.columnName}=${r'#{'}${l.propName},jdbcType=${l.jdbcType}${r'}'}
+            </#if>
+        </#list>
     </update>
 
 

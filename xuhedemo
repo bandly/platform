@@ -1,0 +1,75 @@
+2019-10-27 20:19:53.369  INFO 9372 --- [restartedMain] c.xuhe.platform.web.PlatformApplication  : Starting PlatformApplication on bandly-PC with PID 9372 (D:\dev\platform\platform-web\target\classes started by bandly in D:\dev\platform)
+2019-10-27 20:19:53.416  INFO 9372 --- [restartedMain] c.xuhe.platform.web.PlatformApplication  : The following profiles are active: dev
+2019-10-27 20:19:53.592  INFO 9372 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-10-27 20:19:53.592  INFO 9372 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-10-27 20:19:55.749  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.xuhe.platform.web.config.ShiroConfig$$EnhancerBySpringCGLIB$$74a7647] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:55.767  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'validatorConfig' of type [com.xuhe.platform.web.config.ValidatorConfig$$EnhancerBySpringCGLIB$$d3f5ed08] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:55.796  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'validator' of type [org.hibernate.validator.internal.engine.ValidatorImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.059  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwt.token-com.xuhe.platform.web.config.JwtProperties' of type [com.xuhe.platform.web.config.JwtProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.060  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtHelper' of type [com.xuhe.platform.web.helper.JwtHelper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.136  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dataSourceConfig' of type [com.xuhe.platform.web.config.db.DataSourceConfig$$EnhancerBySpringCGLIB$$ed674beb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.191  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'orderDataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.195  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'crmDataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.198  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'mybatisConfiguration' of type [com.xuhe.platform.web.config.db.MybatisConfiguration$$EnhancerBySpringCGLIB$$58d52447] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.205  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'roundRobinDataSourceProxy' of type [com.xuhe.platform.web.config.db.MybatisConfiguration$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.206  INFO 9372 --- [restartedMain] c.x.p.w.config.db.MybatisConfiguration   : ------------------ sqlSessionFactory init -----------------------------------
+2019-10-27 20:19:56.650  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.655  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.656  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserDAO' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.658  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserDAO' of type [com.sun.proxy.$Proxy55] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.659  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserServiceImpl' of type [com.xuhe.platform.service.admin.impl.SysUserServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.659  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtUserRealm' of type [com.xuhe.platform.web.security.shiro.JwtUserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.679  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'customUserRealm' of type [com.xuhe.platform.web.security.shiro.CustomUserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.685  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.707  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtFilter' of type [com.xuhe.platform.web.security.shiro.JwtFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.756  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:56.828  INFO 9372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b9a9a5ad] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-27 20:19:57.644  INFO 9372 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-10-27 20:19:57.669  INFO 9372 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-27 20:19:57.670  INFO 9372 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-10-27 20:19:57.789  INFO 9372 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-27 20:19:57.789  INFO 9372 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4197 ms
+2019-10-27 20:19:58.551  INFO 9372 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-27 20:19:58.791  INFO 9372 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2019-10-27 20:19:59.214  WARN 9372 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2019-10-27 20:19:59.336  INFO 9372 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-10-27 20:19:59.339  INFO 9372 --- [restartedMain] c.xuhe.platform.web.PlatformApplication  : Started PlatformApplication in 6.882 seconds (JVM running for 8.086)
+2019-10-27 20:20:54.858  INFO 9372 --- [http-nio-8089-exec-1] o.apache.tomcat.util.http.parser.Cookie  : A cookie header was received [1571753878,1572017692,1572177069; Hm_lpvt_e2af8415b6ffbaeb52de4d080cb4ba85=1572178820] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2019-10-27 20:20:54.868  INFO 9372 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-27 20:20:54.868  INFO 9372 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-27 20:20:54.885  INFO 9372 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2019-10-27 20:20:54.949  INFO 9372 --- [http-nio-8089-exec-1] ACCESS_LOGGER                            : request:/index.html
+2019-10-27 20:20:55.095  INFO 9372 --- [http-nio-8089-exec-4] ACCESS_LOGGER                            : request:/lib/layui/layui.js
+2019-10-27 20:20:55.095  INFO 9372 --- [http-nio-8089-exec-2] ACCESS_LOGGER                            : request:/css/font.css
+2019-10-27 20:20:55.095  INFO 9372 --- [http-nio-8089-exec-3] ACCESS_LOGGER                            : request:/css/weadmin.css
+2019-10-27 20:20:55.127  INFO 9372 --- [http-nio-8089-exec-5] ACCESS_LOGGER                            : request:/lib/layui/css/layui.css
+2019-10-27 20:20:55.151  INFO 9372 --- [http-nio-8089-exec-6] ACCESS_LOGGER                            : request:/pages/welcome.html
+2019-10-27 20:20:55.188  INFO 9372 --- [http-nio-8089-exec-7] ACCESS_LOGGER                            : request:/js/admin.js
+2019-10-27 20:20:55.188  INFO 9372 --- [http-nio-8089-exec-8] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/jquery.js
+2019-10-27 20:20:55.204  INFO 9372 --- [http-nio-8089-exec-9] ACCESS_LOGGER                            : request:/lib/layui/font/iconfont.woff2
+2019-10-27 20:20:55.211  INFO 9372 --- [http-nio-8089-exec-10] ACCESS_LOGGER                            : request:/fonts/iconfont.woff
+2019-10-27 20:20:55.218  INFO 9372 --- [http-nio-8089-exec-7] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/jquery.js
+2019-10-27 20:20:55.375  INFO 9372 --- [http-nio-8089-exec-2] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/form.js
+2019-10-27 20:20:55.385  INFO 9372 --- [http-nio-8089-exec-4] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/element.js
+2019-10-27 20:20:55.400  INFO 9372 --- [http-nio-8089-exec-3] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/layer.js
+2019-10-27 20:20:55.411  INFO 9372 --- [http-nio-8089-exec-5] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/util.js
+2019-10-27 20:20:55.426  INFO 9372 --- [http-nio-8089-exec-6] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/element.js
+2019-10-27 20:20:55.430  INFO 9372 --- [http-nio-8089-exec-3] ACCESS_LOGGER                            : request:/lib/layui/css/modules/layer/default/layer.css
+2019-10-27 20:20:55.440  INFO 9372 --- [http-nio-8089-exec-8] ACCESS_LOGGER                            : request:/js/admin.js
+2019-10-27 20:20:55.462  INFO 9372 --- [http-nio-8089-exec-1] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/form.js
+2019-10-27 20:20:55.472  INFO 9372 --- [http-nio-8089-exec-7] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/layer.js
+2019-10-27 20:20:55.485  INFO 9372 --- [http-nio-8089-exec-9] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/carousel.js
+2019-10-27 20:20:58.380  INFO 9372 --- [http-nio-8089-exec-10] ACCESS_LOGGER                            : request:/pages/admin/user/list.html
+2019-10-27 20:20:58.428  INFO 9372 --- [http-nio-8089-exec-2] ACCESS_LOGGER                            : request:/js/admin/user_list.js
+2019-10-27 20:20:58.450  INFO 9372 --- [http-nio-8089-exec-4] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/table.js
+2019-10-27 20:20:58.503  INFO 9372 --- [http-nio-8089-exec-5] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/laytpl.js
+2019-10-27 20:20:58.514  INFO 9372 --- [http-nio-8089-exec-6] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/laypage.js
+2019-10-27 20:20:58.525  INFO 9372 --- [http-nio-8089-exec-3] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/util.js
+2019-10-27 20:20:58.538  INFO 9372 --- [http-nio-8089-exec-8] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/carousel.js
+2019-10-27 20:20:58.546  INFO 9372 --- [http-nio-8089-exec-1] ACCESS_LOGGER                            : request:/lib/layui/lay/modules/laydate.js
+2019-10-27 20:20:58.559  INFO 9372 --- [http-nio-8089-exec-7] ACCESS_LOGGER                            : request:/lib/layui/css/modules/laydate/default/laydate.css
+2019-10-27 20:20:58.571  INFO 9372 --- [http-nio-8089-exec-9] c.x.p.web.security.shiro.JwtFilter       : authenticate jwt token:null
+2019-10-27 20:20:58.607  INFO 9372 --- [http-nio-8089-exec-9] ACCESS_LOGGER                            : request:/error/reCustomShiroEx
+2019-10-27 20:20:58.717  INFO 9372 --- [http-nio-8089-exec-9] c.x.p.web.aspect.RestControllerAspect    : started request requester [unknown] method [ErrorController.reCustomShiroEx] params [HttpServletRequest] IP [192.168.0.101] callSource [null] appVersion [null] apiVersion [null] userAgent [Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36]
+2019-10-27 20:20:58.809  WARN 9372 --- [http-nio-8089-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [CustomShiroAuthenicationException(code=20011, message=无效token, resultCode=TOKEN_INVALID, data=null)]

@@ -42,11 +42,11 @@ public class SysRoleServiceImpl implements SysRoleService {
         List<SysRoleDO> roleList = sysRoleDAO.findRoleList(dalRoleQuery);
         PageInfo pageInfo = new PageInfo(roleList);
 
-        if(CollectionUtils.isNotEmpty(roleList)){
+     /*   if(CollectionUtils.isNotEmpty(roleList)){
             roleList.forEach(role -> {
                 resultVOList.add(assembyRoleVO(role));
             });
-        }
+        }*/
         Page<RoleVO> page = new Page<RoleVO>(pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getPages(), pageInfo.getTotal(), resultVOList);
         return page;
     }

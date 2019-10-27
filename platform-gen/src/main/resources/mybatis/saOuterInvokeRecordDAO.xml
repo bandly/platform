@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinemo.smartauth.dal.SaOuterInvokeRecordDAO">
+
+    <resultMap type="com.shinemo.smartauth.dal.model.SaOuterInvokeRecordDO" id="BaseResultMap">
+            <result column="id" jdbcType="BIGINT" property="id" />
+            <result column="uid" jdbcType="BIGINT" property="uid" />
+            <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+            <result column="acc_type" jdbcType="SMALLINT" property="accType" />
+            <result column="site_id" jdbcType="SMALLINT" property="siteId" />
+            <result column="org_id" jdbcType="BIGINT" property="orgId" />
+            <result column="supplier_type" jdbcType="SMALLINT" property="supplierType" />
+            <result column="action_name" jdbcType="VARCHAR" property="actionName" />
+            <result column="charge" jdbcType="TINYINT" property="charge" />
+            <result column="charge_id" jdbcType="VARCHAR" property="chargeId" />
+            <result column="req_content" jdbcType="VARCHAR" property="reqContent" />
+            <result column="resp_content" jdbcType="VARCHAR" property="respContent" />
+            <result column="extend" jdbcType="VARCHAR" property="extend" />
+            <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+            <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,uid,mobile,acc_type,site_id,org_id,supplier_type,action_name,charge,charge_id,req_content,resp_content,extend,gmt_create,gmt_modified
+    </sql>
+
+    <!--按主键查询-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from sa_outer_invoke_record
+        where
+            id=#{id,jdbcType=BIGINT}
+    </select>
+
+
+    <!--按主键删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sa_outer_invoke_record
+        where
+            id=#{id,jdbcType=BIGINT}
+    </delete>
+
+    <!--插入记录 全部字段-->
+    <insert id="insert" parameterType="com.shinemo.smartauth.dal.model.SaOuterInvokeRecordDO" useGeneratedKeys="true">
+        insert into sa_outer_invoke_record
+        (uid,mobile,acc_type,site_id,org_id,supplier_type,action_name,charge,charge_id,req_content,resp_content,extend,gmt_create,gmt_modified)
+        values
+        (<trim prefix="(" suffix=")" suffixOverrides=",">#{uid,jdbcType=BIGINT},#{mobile,jdbcType=VARCHAR},#{accType,jdbcType=SMALLINT},#{siteId,jdbcType=SMALLINT},#{orgId,jdbcType=BIGINT},#{supplierType,jdbcType=SMALLINT},#{actionName,jdbcType=VARCHAR},#{charge,jdbcType=TINYINT},#{chargeId,jdbcType=VARCHAR},#{reqContent,jdbcType=VARCHAR},#{respContent,jdbcType=VARCHAR},#{extend,jdbcType=VARCHAR},#{gmtCreate,jdbcType=TIMESTAMP},#{gmtModified,jdbcType=TIMESTAMP},</trim>)
+    </insert>
+
+    <!--插入记录 全部字段忽略掉 字段值为null或者空 -->
+    <insert id="insertSelective" parameterType="com.shinemo.smartauth.dal.model.SaOuterInvokeRecordDO" useGeneratedKeys="true">
+        insert into sa_outer_invoke_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null" >
+                uid,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="accType != null" >
+                acc_type,
+            </if>
+            <if test="siteId != null" >
+                site_id,
+            </if>
+            <if test="orgId != null" >
+                org_id,
+            </if>
+            <if test="supplierType != null" >
+                supplier_type,
+            </if>
+            <if test="actionName != null" >
+                action_name,
+            </if>
+            <if test="charge != null" >
+                charge,
+            </if>
+            <if test="chargeId != null" >
+                charge_id,
+            </if>
+            <if test="reqContent != null" >
+                req_content,
+            </if>
+            <if test="respContent != null" >
+                resp_content,
+            </if>
+            <if test="extend != null" >
+                extend,
+            </if>
+            <if test="gmtCreate != null" >
+                gmt_create,
+            </if>
+            <if test="gmtModified != null" >
+                gmt_modified,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null" >
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="mobile != null" >
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="accType != null" >
+                #{accType,jdbcType=SMALLINT},
+            </if>
+            <if test="siteId != null" >
+                #{siteId,jdbcType=SMALLINT},
+            </if>
+            <if test="orgId != null" >
+                #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="supplierType != null" >
+                #{supplierType,jdbcType=SMALLINT},
+            </if>
+            <if test="actionName != null" >
+                #{actionName,jdbcType=VARCHAR},
+            </if>
+            <if test="charge != null" >
+                #{charge,jdbcType=TINYINT},
+            </if>
+            <if test="chargeId != null" >
+                #{chargeId,jdbcType=VARCHAR},
+            </if>
+            <if test="reqContent != null" >
+                #{reqContent,jdbcType=VARCHAR},
+            </if>
+            <if test="respContent != null" >
+                #{respContent,jdbcType=VARCHAR},
+            </if>
+            <if test="extend != null" >
+                #{extend,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null" >
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null" >
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 按主键更新字段 忽略掉字段值为空或者为null -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.shinemo.smartauth.dal.model.SaOuterInvokeRecordDO">
+        update sa_outer_invoke_record
+        <set>
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="uid != null and uid!= ''" >
+                uid=#{uid},
+            </if>
+            <if test="mobile != null and mobile!= ''" >
+                mobile=#{mobile},
+            </if>
+            <if test="accType != null and accType!= ''" >
+                acc_type=#{accType},
+            </if>
+            <if test="siteId != null and siteId!= ''" >
+                site_id=#{siteId},
+            </if>
+            <if test="orgId != null and orgId!= ''" >
+                org_id=#{orgId},
+            </if>
+            <if test="supplierType != null and supplierType!= ''" >
+                supplier_type=#{supplierType},
+            </if>
+            <if test="actionName != null and actionName!= ''" >
+                action_name=#{actionName},
+            </if>
+            <if test="charge != null and charge!= ''" >
+                charge=#{charge},
+            </if>
+            <if test="chargeId != null and chargeId!= ''" >
+                charge_id=#{chargeId},
+            </if>
+            <if test="reqContent != null and reqContent!= ''" >
+                req_content=#{reqContent},
+            </if>
+            <if test="respContent != null and respContent!= ''" >
+                resp_content=#{respContent},
+            </if>
+            <if test="extend != null and extend!= ''" >
+                extend=#{extend},
+            </if>
+            <if test="gmtCreate != null and gmtCreate!= ''" >
+                gmt_create=#{gmtCreate},
+            </if>
+            <if test="gmtModified != null and gmtModified!= ''" >
+                gmt_modified=#{gmtModified},
+            </if>
+        </trim>
+        </set>
+        where  id=#{id}
+    </update>
+
+    <!-- 按主键更新全部字段-->
+    <update id="updateByPrimaryKey" parameterType="com.shinemo.smartauth.dal.model.SaOuterInvokeRecordDO">
+        update sa_outer_invoke_record
+        <set>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uid=#{uid},
+            mobile=#{mobile},
+            acc_type=#{accType},
+            site_id=#{siteId},
+            org_id=#{orgId},
+            supplier_type=#{supplierType},
+            action_name=#{actionName},
+            charge=#{charge},
+            charge_id=#{chargeId},
+            req_content=#{reqContent},
+            resp_content=#{respContent},
+            extend=#{extend},
+            gmt_create=#{gmtCreate},
+            gmt_modified=#{gmtModified},
+        </trim>
+        </set>
+    </update>
+
+
+</mapper>
